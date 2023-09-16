@@ -1,0 +1,1 @@
+### Here the storgae of query and cypher will be done in mongo dbdatabase

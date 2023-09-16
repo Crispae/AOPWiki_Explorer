@@ -1,0 +1,179 @@
+
+/* Style for the main component */
+
+.app{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+
+.component {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: auto; /* Set the height to 500px */
+  display: flex;
+  flex-direction: column;
+  
+  
+}
+
+/* Style for the visual display area */
+.display_main {
+  position: relative; /* added inplace of display property to bring the spinner in center*/
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  max-height: calc(100% - 10px); /* Subtract margin to fit within the container */
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 700px; /* critical otherwise it will cause loop error*/
+  width: auto;
+  margin: 0px;
+  padding: 0px;
+  
+}
+
+/* Style for the user input area */
+.user_input {
+  position: relative;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  max-height: calc(100% - 10px); /* Subtract margin to fit within the container */
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: auto;
+}
+
+
+.input_box {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+
+
+}
+
+.repeat expand close {
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  margin-left: auto; /* Push the button to the right */
+
+
+}
+
+
+
+/* Same as componentof sdynamics area*/
+.collapsed-component {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  height: auto; /* Set the height to 500px */
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-bottom: 10px;
+  
+}
+
+.info {
+  position: relative;
+  background-color: #ffffff;
+  border: 3px solid #ddd;
+  border-radius: 5px;
+  text-align: justify;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom:10px ;
+  display: flex; /* Use flex display to manage the positioning of elements */
+  align-items: center; /* Vertically align items */
+}
+
+.info p {
+  margin: 0;
+  flex-grow: 1; /* Allow the paragraph to expand and push the button to the right */
+}
+
+.foot{
+margin-top: auto;  
+
+}
+
+/* Has same syle as dispaly*/
+.display_history 
+{
+  flex-grow: 1;
+  max-height: calc(100% - 10px); /* Subtract margin to fit within the container */
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 500px; /* critical otherwise it will cause loop error*/
+  width: auto;
+  margin: 0px;
+  
+}
+  
+/* It has same css as input area*/
+.info_card{
+  position: relative;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  max-height: calc(100% - 10px); /* Subtract margin to fit within the container */
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding-top: 10px;
+  height: auto;
+
+
+}
+.node {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: justify;
+  
+}
+
+/* Adjust the max-height and overflow properties as needed */
+.info-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.info-col {
+  padding: 5px;
+  max-height: 200px; /* Adjust the max height as needed */
+  overflow: scroll;
+  white-space: nowrap;
+  cursor: pointer;
+
+}
+
+
+.loading-spinner {
+  position: absolute; /* Position it relative to the .display_main div */
+  top: 50%; /* Vertically center */
+  left: 50%; /* Horizontally center */
+  transform: translate(-50%, -50%); /* Centering trick */
+}
+

@@ -1,0 +1,167 @@
+ [
+    {   "id": "1",
+        "question": "Find the stressors and Chemicals related to a specific Adverse Outcome Pathway (AOP) 450.",
+        "cypher": "MATCH (aop:AOP)-[aop_stressor_relation:HAS_STRESSOR]-(stressor:STRESSOR)-[stressor_chemical_relation:HAS_CHEMICAL]-(chemical:CHEMICAL)\nWHERE aop.id = '450'\nRETURN *"
+    },
+    
+    {   "id":"2",
+        "question": "What chemicals or stressor initiate molecular initiating event of AOP 15?",
+        "cypher": "MATCH (aop:AOP{id:'23'})-[rel1:HAS_MOLECULAR_INITIATING_EVENT]-(event:KEY_EVENT)\nMATCH (aop)-[rel2:HAS_STRESSOR]-(stressor:STRESSOR)\nOPTIONAL MATCH (stressor)-[rel3:HAS_CHEMICAL]-(chemical:CHEMICAL)\nRETURN *"
+    
+    },
+        { "id":"3",
+        "question": "Name the Key events and adverse outcome linked with AOP 155?",
+        "cypher": "MATCH (aop:AOP)-[rel1:HAS_KEY_EVENT]-(event:KEY_EVENT)\nMATCH (aop:AOP)-[rel2:HAS_ADVERSE_OUTCOME]-(adverse_event:KEY_EVENT)\nWHERE aop.id = '155'\nRETURN *"
+    },
+    {
+
+        "id":"4",
+        "question":"Provide the schema of graph database?",
+        "cypher":"call db.schema.visualization"
+    },
+
+    {  
+        "id":"5",
+        "question": "Give me the stressors and aop where these chemicals Nitrendipin,Tacrolimus are mentioned?",
+        "cypher": "MATCH (a:AOP)-[rel:HAS_STRESSOR]-(b:STRESSOR)\nWHERE b.name =~ '.*Nitrendipin.*' OR b.name =~ '.*Tacrolimus .*'\nOPTIONAL MATCH (b)-[rel2:HAS_CHEMICAL]-(c:CHEMICAL)\nRETURN *"
+    },
+    
+    {   "id":"6",
+        "question": "Can you provide me the shortestpath to connect AOP 450 and AOP 150, and this should be connected with key events only",
+        "cypher": "MATCH (aop1:AOP{id:'150'}),(aop2:AOP{id:'464'})\nMATCH path = shortestPath((aop1)-[:HAS_KEY_EVENT*]-(aop2))\nRETURN path"
+    },
+    {   "id":"7",
+        "question": "Can you provide me the shortestpath to connect AOP 450 and AOP 150, and this should be connected with key event relationship only",
+        "cypher": "MATCH (aop1:AOP{id:'150'}),(aop2:AOP{id:'464'})\nMATCH path = shortestPath((aop1)-[:HAS_KER*]-(aop2))\nRETURN path"
+    },
+
+    {
+        "id":"8",
+        "question":"Find the stressors and Chemicals related to a specific Adverse Outcome Pathway (AOP) 450.",
+        "cypher":"MATCH (a:AOP {id:'450'})-[r1:HAS_STRESSOR]-(s:STRESSOR)-[r2:HAS_CHEMICAL]-(c:CHEMICAL)\nRETURN *"
+    },
+
+    {
+        "id":"9",
+        "question":"What stressors interact with the molecular initiating event of AOP 15?",
+        "cypher":"MATCH (a:AOP {id:'150'})-[r1:HAS_MOLECULAR_INITIATING_EVENT]-(e:KEY_EVENT)\nMATCH (a)-[r2:HAS_STRESSOR]->(s:STRESSOR)\nRETURN *"
+
+    },
+    {
+        "id":"10",
+        "question":"What are the key events and adverse outcome linked with AOP 155?",
+        "cypher":"MATCH (a:AOP {id:'155'})-[r1:HAS_KEY_EVENT]->(e:KEY_EVENT)\nMATCH (a)-[r2:HAS_ADVERSE_OUTCOME]->(adverse:KEY_EVENT)\nRETURN *"
+
+    },
+    {
+        "id":"11",
+        "question":"Give me the aop where ahr gene is involved and also the key event attached to that aop?",
+        "cypher":"MATCH (a:AOP)-[rel:HAS_GENE]-(e:GENE)\nWHERE toLower(e.name) =~ '.*ahr.*'\nMATCH (a)-[rel2:HAS_KEY_EVENT]-(f:KEY_EVENT)\nRETURN *"
+    },
+    {
+        "id":"12",
+        "question":"AOPs which has ibuprofen as chemical or stressor",
+        "cypher":"MATCH (a:AOP)-[rel1:HAS_STRESSOR]-(b:STRESSOR)\nWHERE toLower(b.name) =~ '.*ibupr.*'\nOPTIONAL MATCH (b)-[rel2:HAS_CHEMICAL]-(c:CHEMICAL)\nWHERE toLower(c.name) =~ '.*ibupr.*'\nRETURN *"
+    },
+    {
+        "id":"13",
+        "question":"Provide the aop, which is connected with the adverse event of aop 450 and has applicability in Homo sapines taxonomy and 'sars' as stressor",
+        "cypher":"MATCH (a:AOP{id:'450'})-[rel:HAS_ADVERSE_OUTCOME]-(b:KEY_EVENT)\nMATCH (b)-[rel2:HAS_ADVERSE_OUTCOME]-(c:AOP)\nMATCH (c)-[rel3:IS_APPLICABLE]-(d:TAXONOMY{name:'Homo sapiens'})\nMATCH (c)-[rel4:HAS_STRESSOR]-(e:STRESSOR)\nWHERE toLower(e.name) =~ '.*sars.*'\nRETURN *"
+
+    },
+  
+    {
+        "id":"14",
+        "question":"AOP with maximum number of key events attached to it",
+        "cypher":"MATCH (aop:AOP)-[:HAS_KEY_EVENT]-(event:KEY_EVENT)\nWITH aop, count(event) AS eventCount\nORDER BY eventCount DESC\nLIMIT 1\nRETURN aop, eventCount"
+
+    },
+    {
+        "id":"15",
+        "question":"Event with maximum number of aop attached to it",
+        "cypher":"MATCH (aop:AOP)-[:HAS_KEY_EVENT]-(event:KEY_EVENT)\nWITH event, COUNT(aop) as aopCount\nORDER BY aopCount DESC\nLIMIT 1\nRETURN *"
+
+    },
+    {
+        "id":"16",
+        "question":"provide me with the chemical and stressors involved in AOP 332",
+        "cypher":"MATCH (a:AOP {id:'330'})-[r1:HAS_STRESSOR]-(s:STRESSOR)\nOPTIONAL MATCH (s)-[r2:HAS_CHEMICAL]-(c:CHEMICAL)\nRETURN *"
+
+    },
+    {
+        "id":"17",
+        "question":"What are the adverse outcomes of aop , which has sars as stressor",
+        "cypher":"MATCH (a:AOP)-[r1:HAS_ADVERSE_OUTCOME]->(adverse:KEY_EVENT)\nMATCH (a)-[r2:HAS_STRESSOR]-(s:STRESSOR)\nWHERE toLower(s.name) =~ '.*sars.*'\nRETURN *"
+
+    },
+    {
+        "id":"18",
+        "question":"provide me the aops which is related to mitochondrial dysfunction disease?",
+        "cypher":"MATCH (a:AOP)-[rel1:HAS_DISEASE]-(b:DISEASE)\nWHERE toLower(b.name) =~ '.*mitochondrial dysfunction.*'\nRETURN *"
+    },
+    {
+        "id":"19",
+        "question":"What are the life stages AOP 450 is applicable?",
+        "cypher":"MATCH (a:AOP {id:'450'})-[r:IS_APPLICABLE]->(b:LIFE_STAGE) RETURN *"
+    },
+    {
+        "id":"20",
+        "question":"what aops are associated with adult life stage?",
+        "cypher":"MATCH (a:AOP)-[r:IS_APPLICABLE]->(b:LIFE_STAGE)\nWHERE toLower(b.name) =~ '.*Adult' RETURN*"
+    },
+    {
+        "id":"21",
+        "question":"what aops are associated with adult life stage?",
+        "cypher":"MATCH (a:AOP)-[r:IS_APPLICABLE]->(b:LIFE_STAGE)\nWHERE toLower(b.name) =~ '.*Adult' RETURN *"
+
+    },
+    {
+        "id":"22",
+        "question":"Which is the most abudant life stage, the aops are applicable to.",
+        "cypher":"MATCH (a:AOP)-[r:IS_APPLICABLE]->(l:LIFE_STAGE)\nWITH l, count(a) AS aopCount\nORDER BY aopCount DESC LIMIT 1\nRETURN l"
+
+    },
+    {
+        "id":"23",
+        "question":"AOPs applicable to fish and rat?",
+        "cypher":"MATCH (a:AOP)-[rel:IS_APPLICABLE]-(b:TAXONOMY)\nWHERE toLower(b.name) =~ '.*fish.*' OR toLower(b.name) =~ '.*rat.*'\nRETURN *"
+    },
+    {
+        "id":"24",
+        "question":"AOPs having fertility or reproduction mentioned in their adverse outcomes?",
+        "cypher":"MATCH (a:AOP)-[rel1:HAS_ADVERSE_OUTCOME]-(b:KEY_EVENT)\nWHERE toLower(b.name) =~ '.*fertility.*' OR toLower(b.name) =~ '.*reproductive.*'\nRETURN *"
+    },
+    {
+        "id":"25",
+        "question":"Key events which are not related to female?",
+        "cypher":"MATCH (ke:KEY_EVENT)-[rel1:IS_APPLICABLE]-(s:SEX)\nWHERE toLower(s.name) <> 'female'\nRETURN *"
+    },
+    {
+        "id":"26",
+        "question":"key events related to male but not to female?",
+        "cypher":"MATCH (ke:KEY_EVENT)-[rel1:IS_APPLICABLE]-(s:SEX)\nWHERE toLower(s.name) = 'male' AND NOT (ke)-[:IS_APPLICABLE]->(:SEX {name: 'female'})\nRETURN *"
+    },
+    {
+        "id":"27",
+        "question":"AOPs related to unspecific sex",
+        "cypher":"MATCH (a:AOP)-[rel1:IS_APPLICABLE]-(b:SEX)\nWHERE toLower(b.name) = 'unspecific'\nRETURN *"
+    }
+    
+    
+
+   
+
+
+
+ 
+
+   
+
+
+
+
+
+
+
+
+]
