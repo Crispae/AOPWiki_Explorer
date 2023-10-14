@@ -144,6 +144,8 @@ def generateCypher(query, graph, count, llm):
     cypher_chain = LLMChain(llm=llm, prompt=cypher_prompt)
     cypher_output = cypher_chain.run(query)
 
+    #NOTE: Put try and else block here, when cypher is not able to parse
+    # langchain.schema.OutputParserException happend mainly
     # Now cypher will parsed out.
     parsed_cypher = cypher_parser.parse(cypher_output).cypher
 

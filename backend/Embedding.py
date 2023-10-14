@@ -47,6 +47,9 @@ class Embedder:
             persist_directory=self.storage_path
         ))
 
+
+    # NOTE: Add functionality to first check, if collection is present and 
+    # then check the ids and examples already available in collection
     def embedExamples(self, examples, collection_name, persistant=True):
         """
         Function to embedd the examples
