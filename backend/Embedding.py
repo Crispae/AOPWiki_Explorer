@@ -2,10 +2,8 @@
 import json
 import chromadb
 from chromadb.utils import embedding_functions
-from chromadb.config import Settings
 import pandas as pd
 import os
-
 
 class Embedder:
 
@@ -29,7 +27,7 @@ class Embedder:
         if model_name:
             self.model = embedding_functions.OpenAIEmbeddingFunction(
                 model_name=model_name, api_key=openai_key)
-
+            
         else:
             self.model = None
 
@@ -41,19 +39,16 @@ class Embedder:
         if not os.path.isdir(self.storage_path):
             os.makedirs(self.storage_path)
 
-        # client for handling the Indexing of embedding
-        self.chroma_client = chromadb.Client(Settings(
-            chroma_db_impl="duckdb+parquet",
-            persist_directory=self.storage_path
-        ))
+        ## Instansiating chroma client
+        self.chroma_client = chromadb.PersistentClient(path=self.storage_path)
+
 
 
     # NOTE: Add functionality to first check, if collection is present and 
     # then check the ids and examples already available in collection
-    def embedExamples(self, examples, collection_name, persistant=True):
+    def embedExamples(self, examples, collection_name):
         """
-        Function to embedd the examples
-        using chroma to embed the examples and store it.
+        Methods to handles the embedding generation and storgae of examples.
 
         """
 
@@ -64,7 +59,6 @@ class Embedder:
         meta_data = list(map(lambda x: {"id": x[0], "question": x[1]},
                              zip(ids, doc)))
 
-        # creating a collection to embed and store the query
 
         # Using custom model
         if self.model:
@@ -81,15 +75,10 @@ class Embedder:
             metadatas=meta_data,
             ids=ids)
 
-        # Making the collection persistant
-        if persistant:
-            self.chroma_client.persist()
 
     def get_collection(self, collection_name):
         """
         Get the collection if already available in the persistant storage
-
-        Note: Default collection name will be aopgraph
 
         """
 
@@ -99,7 +88,7 @@ class Embedder:
 
     def getRawExample(self,):
         """
-        This will provides all the raw examples availables in the examples file
+            Retrive raw examples from the given JSON file
 
         """
 
@@ -107,7 +96,10 @@ class Embedder:
 
     def getSimilarExample(self, query, count):
 
-        # This interface will take query and provide the similar examples
+        """
+        Retrive top-k queries based on the given query
+
+        """
 
         results = self.collection.query(query_texts=query,
                                         n_results=count)
@@ -118,6 +110,21 @@ class Embedder:
         return similar_examples
 
 
+
+def generate_embedding(persistant_path : str,collection_name: str):
+    
+    EMBEDDING_PERSISTANT_PATH = "test"
+    
+    ## Instansiating embedding function
+    embedder = Embedder(persistant_path=persistant_path)
+    
+    ## Loading examples stored in json file
+    example_queries = embedder.getRawExample()
+    
+    ## Embed the examples in vector database
+    embedder.embedExamples(examples=example_queries,collection_name=collection_name,)
+
+
 if __name__ == "__main__":
 
     emb = Embedder(persistant_path="./aop")
@@ -126,5 +133,5 @@ if __name__ == "__main__":
     # query the examples
     similar_query = emb.getSimilarExample(query=query,
                                           count=3)
-
+    
     print(similar_query)

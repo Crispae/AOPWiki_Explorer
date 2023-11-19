@@ -1,48 +1,71 @@
 from flask import Flask, request
 from prompt import generateCypher, db_connect
+from Embedding import generate_embedding
 from langchain.chat_models import ChatOpenAI
-
 from flask_cors import CORS
+import time
 
-import os
-os.environ["OPENAI_API_KEY"] = "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"
+## add sleep 30 sec
+time.sleep(30)
 
 app = Flask(__name__)
 CORS(app)
 
-# Graph database connected
-graph = db_connect(url="bolt://localhost:7687",
+
+
+PERSISTANT_PATH = "aoptest2"
+COLLECTION_NAME ="test2"
+
+## When app starts generate example embeddings
+generate_embedding(persistant_path=PERSISTANT_PATH,collection_name=COLLECTION_NAME)
+print("Generate embedding with examples")
+
+
+# Connect graph database
+graph = db_connect(url=r"bolt://neo4j:7687",
                    username="neo4j",
-                   password="qwertyuiop")
+                   password="1234")
+
 
 # Instansiating llm to  be used
 llm = ChatOpenAI(temperature=0, model="gpt-4-0613")
 
 
+
+@app.route("/",methods=["GET","POST"])
+def home():
+    return "<p>Backend</>"
+
+
 @app.route("/query", methods=["POST"])
 def query():
 
+    ## requested data from frontend
     data = request.get_json()
 
-    # From here the data will be send for processing
-    # 1. First the query will be send for embeddign generation
-    # 2. Embedded query will be matched using chroma to extract 10 relevant examples
-    # 3. Extraced Examples will be fed into prompt with query
-    # 4. The prompt will be passed in model to generate the cypher
-    # 5. The generated cypher will be returend
+    try:
+        cypher = generateCypher(query=data.get("query"),
+                            graph=graph,
+                            count=10,
+                            llm=llm,
+                            persistant_path=PERSISTANT_PATH,
+                            collection_name=COLLECTION_NAME)
+        
+        print(cypher)
 
-    # request is passed to generate cypher
-    # Take query and feed in the function to generate the cypher
-
-    cypher = generateCypher(query=data.get(
-        "query"), graph=graph, count=10, llm=llm)
-
-    return {"status": "success",
-            "result": {"query": data.get("query"),
-                       "id": data.get("id"),
-                       "cypher": cypher}}
+        return {"status": "success",
+                "result": {"query": data.get("query"),
+                        "id": data.get("id"),
+                        "cypher": cypher}}
+    
+    ## Handle any unexpected Error
+    except Exception as e:
+        print(e)
+        return {"status":"fail",
+                "result":"error"
+        }
 
 
 if __name__ == "__main__":
 
-    app.run(debug=True, port=333)
+    app.run(host='0.0.0.0',debug=True, port=3336,  use_reloader=False)

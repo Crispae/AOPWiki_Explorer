@@ -1,18 +1,20 @@
 version: '3.7'
 services:
 
-
+  ## Webapp container
   frontend:
+    container_name: frontend
     build:
-      context: ./frontend
+      context: './frontend'
     ports:
-      - "4545:4545"
+      - "3000:3000"
     networks:
       - mynetwork
 
+  ## Neo4j database container
   neo4j:
     image: neo4j:4.2.3-enterprise
-    container_name: "neo-gds1.5"
+    container_name: neo4j
     volumes:
       - $HOME/graph_data/my_data:/data
       - $HOME/graph_data/my_data:/var/lib/neo4j/import
@@ -30,9 +32,13 @@ services:
     networks:
       - mynetwork
 
+  ### Jupyter notebook container
   jupyter:
+    container_name: jupyter
     build:
-      context: ./jupyter
+      context: './jupyter'
+    user: 1000:1000  # Change the user and group to match the container's permissions
+
     ports:
       - "8888:8888"
     links:
@@ -40,5 +46,25 @@ services:
     networks:
       - mynetwork
 
+
+  ### backend container (natural language to cypher translation)
+  backend:
+    container_name: backend
+    build:
+      context: './backend'
+    environment:
+      - OPENAI_API_KEY=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
+    networks:
+      - mynetwork
+    depends_on:
+      - neo4j
+    ports:
+      - "3336:3336"
+    links:
+      - neo4j
+      - frontend
+      
+
+## Configure network 
 networks:
   mynetwork:

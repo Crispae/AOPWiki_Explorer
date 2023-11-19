@@ -9,12 +9,13 @@ from typing import Optional, List
 from Embedding import Embedder
 
 
-# Db connect should happens only oncem
+
+# Db connect should happens only once
 def db_connect(url,
                username,
                password):
     """
-    This function will connect to the database
+    make persistant connection with Neo4j database for schema generation using langchain
 
     """
 
@@ -30,7 +31,7 @@ def get_schema(graph, custom=False):
     """
 
     if custom:
-        # These a custom designed schema will be provided
+        # Custom designed schema will be provided
         pass
 
     else:
@@ -39,18 +40,21 @@ def get_schema(graph, custom=False):
 
 def get_examples(query,
                  count,
+                 persistant_path,
+                 collection_name,
                  model=None,
                  api_key=None,
-                 collection_name="aopgraph"):
+                 ):
     """
     Provide examples similar to user query
 
    Already embedded set of examples will be available for querying
 
     """
-    # creating embedding object
-    embd = Embedder(persistant_path="aopwiki",
-                    model_name=model, openai_key=api_key)
+    # Instansiating embedder object
+    embd = Embedder(persistant_path=persistant_path,
+                    model_name=model, 
+                    openai_key=api_key)
 
     # get collection of already embedded examples
     embd.get_collection(collection_name=collection_name)
@@ -120,11 +124,13 @@ def _prompt(query, graph, examples):
     return pydantic_prompt
 
 
-def create_prompt(query, graph, examples_count):
+def create_prompt(query, graph, examples_count,persistant_path,collection_name):
 
     # getting graph and examples
 
     examples = get_examples(query=query,
+                            persistant_path=persistant_path,
+                            collection_name=collection_name,
                             count=examples_count,
                             model=None,
                             api_key=None,)
@@ -132,24 +138,26 @@ def create_prompt(query, graph, examples_count):
     return _prompt(query=query, graph=graph, examples=examples)
 
 
-def generateCypher(query, graph, count, llm):
+def generateCypher(query, graph, count, llm,persistant_path,collection_name):
     """ It will generate cypher from the query of the user """
 
     # prompt to generate cypher
     cypher_prompt = create_prompt(
-        query=query, examples_count=count, graph=graph)
+        query=query,
+        examples_count=count,
+        graph=graph,
+        persistant_path=persistant_path,
+        collection_name=collection_name)
 
     # Run the model to generate the cypher
-    print(cypher_prompt)
     cypher_chain = LLMChain(llm=llm, prompt=cypher_prompt)
     cypher_output = cypher_chain.run(query)
 
     #NOTE: Put try and else block here, when cypher is not able to parse
     # langchain.schema.OutputParserException happend mainly
-    # Now cypher will parsed out.
     parsed_cypher = cypher_parser.parse(cypher_output).cypher
 
-    # Parse error should also be provided, to reflect it on the front end
+    # Raise valueError caught in app.py
     if parsed_cypher == "Error":
         raise ValueError(
             "Query from the the user is not related to AOP graph network")
