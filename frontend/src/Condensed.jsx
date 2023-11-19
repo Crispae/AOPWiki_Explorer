@@ -5,8 +5,6 @@ import Collapsed from './Collapsed';
 import {useHistoryContext} from './HistoryContextProvider'
 
 
-
-
 // This component will represent the query done by the user in condensed format.
 
 function Condensed({item,}) {

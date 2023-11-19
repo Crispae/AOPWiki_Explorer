@@ -2,7 +2,8 @@
   "name": "aopwiki",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:333/*",
+  "proxy": "http://127.0.0.1:3336/",
+  "secure":false,
   "dependencies": {
     "@codemirror/language": "^6.8.0",
     "@codemirror/legacy-modes": "^6.3.3",
@@ -31,7 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=4545 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

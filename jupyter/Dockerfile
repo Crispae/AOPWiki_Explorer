@@ -1,5 +1,8 @@
 FROM jupyter/base-notebook
 
+LABEL author="saurav kumar"
+LABEL description="Image definition for AOPWiki Explorer jupyter."
+
 # Switch to root user
 USER root
 

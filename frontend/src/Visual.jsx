@@ -41,7 +41,7 @@ function convertRequest(data_info) {
   
   return new Promise((resolve, reject) => {
     const req = new XMLHttpRequest();
-    let url = "http://127.0.0.1:333/query";
+    let url = "http://127.0.0.1:3336/query";
     req.open("POST", url, true);
     req.setRequestHeader("Content-type", "application/json");
     req.setRequestHeader("Access-Control-Allow-Origin", "*");
