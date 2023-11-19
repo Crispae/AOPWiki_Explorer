@@ -1,5 +1,6 @@
 **/node_modules
 **/.vscode
 **/__pycache__
-.ipynb_checkpoints
-Artcicle/ 
+Artcicle/
+**/.ipynb_checkpoints/
+**/.dockerignore
