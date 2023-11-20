@@ -19,7 +19,7 @@ Go to following [documentation](https://docs.docker.com/engine/install/), to ins
 The recommended method to use AOPWIKI explorer is through Docker
 
 **Step 1: Build the Docker container**   
-In [`docker-compose.yaml`](https://github.com/Crispae/AOPWiki_Explorer/blob/main/docker-compose.yaml) file, please update the `OPENAI_API_KEY` to run the query translation service.  
+In [`docker-compose.yaml`](https://github.com/Crispae/AOPWiki_Explorer/blob/main/docker-compose.yaml) file, update your `OPENAI_API_KEY` to run the query translation service.  
 
 Get your OpenAI API key from following [link](https://openai.com/blog/openai-api)
 
