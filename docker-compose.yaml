@@ -53,7 +53,7 @@ services:
     build:
       context: './backend'
     environment:
-      - OPENAI_API_KEY=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
+      - OPENAI_API_KEY=""
     networks:
       - mynetwork
     depends_on:
