@@ -18,32 +18,52 @@ Follow the documentation [documentation](https://docs.docker.com/engine/install/
 
 The recommended method to use AOPWIKI explorer is through Docker container.
 
-**Step 1: Clone the Repository**  
+## Step 1: Clone the Repository  
   ```shell
 git clone https://github.com/Crispae/AOPWiki_Explorer.git
 cd AOPWiki_Explorer
 ```  
-**Step 2: Build docker container**   
-In [`docker-compose.yaml`](https://github.com/Crispae/AOPWiki_Explorer/blob/main/docker-compose.yaml) file, update your `OPENAI_API_KEY` to use the query translation service.  
+## Step 2: Build Docker Container
 
-Get your OpenAI API key from following [link](https://openai.com/blog/openai-api)  
+In the [`docker-compose.yaml`](https://github.com/Crispae/AOPWiki_Explorer/blob/main/docker-compose.yaml) file, it's essential to update the `OPENAI_API_KEY` to enable the query translation service.
 
-After updating the openAI key build the container with the following command
-```shell
-docker compose up
-```  
-**Step 3. Populate graph database with AOP information.**  
-Open the jupyter notebook to populate the graph database with updated infortmation, The url for jupyter notebook can be found in the console, while docker-compose is running the instance.
+### Instructions:
 
-The url will be like this ```  http://127.0.0.1:8888/lab?token=your_token```  
+1. **Obtain Your OpenAI API Key:**
+   - Get your OpenAI API key from the [OpenAI API page](https://openai.com/blog/openai-api).
 
-**Steps to update the graph database(It's a one time process)**
-1. Open the jupyter lab from the above link captured from console.
-2. Run `GrapEnricher.ipynb` notebook.
-3. If installing first time on your system, run the whole jupyter notebook, it will update the database.
-4. If already installed, and want to update the notebook, you can delete the information in graph database by uncommenting respective cells.
+2. **Update the `OPENAI_API_KEY`:**
+   - Locate the `docker-compose.yaml` file in the cloned repository.
+   - Replace the placeholder for `OPENAI_API_KEY` with your obtained API key.
 
-**Step 4. Acess the interface**  
+3. **Build the Docker Container:**
+   - After updating the OpenAI key, initiate the container build using the following command:
+   ```shell
+   docker compose up
+
+## Step 3: Populate the Graph Database with AOP Information
+
+To update the graph database with the latest AOP information, follow these steps. This process is a one-time setup.
+
+### Instructions:
+
+1. **Open the Jupyter Notebook:**
+   - Access the Jupyter Lab by clicking on the provided URL captured from the console while running the Docker instance. The URL will resemble: `http://127.0.0.1:8888/lab?token=your_token`
+
+2. **Run the `GraphEnricher.ipynb` Notebook:**
+   - After accessing the Jupyter Lab, locate and run the `GraphEnricher.ipynb` notebook within the interface.
+
+3. **Updating the Database:**
+   - If it's the first installation on your system:
+     - Run the entire Jupyter Notebook. This process will update the database with the latest AOP information.
+
+   - If it's an update to the existing installation:
+     - Uncomment the relevant cells in the notebook to delete the information in the graph database before running the notebook. This step ensures that the database gets updated with the most recent information.
+
+These steps are essential for maintaining an updated graph database containing the latest AOP information. Make sure to follow these instructions to keep the database current.
+
+
+## Step 4. Acess the interface  
 Open following link on your web browser to access the AOPwiki-Explorer  ```http://127.0.0.1:3000/```
 
 ## Usage
