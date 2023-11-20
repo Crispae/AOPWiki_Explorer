@@ -12,7 +12,7 @@ AOPWiki Explorer is a Labeld property graph (LPFG) adaptation of AOPwiki. LPG sc
 - Docker  
 - Docker-compose  
 
-Go to following [documentation](https://docs.docker.com/engine/install/), to install docker and docker compose
+Follow the documentation [documentation](https://docs.docker.com/engine/install/), to install docker and docker compose
 
 ## Quick Installation
 
