@@ -35,7 +35,7 @@ Open following link on your web browser to access the AOPwiki-Explorer  ```http:
 
 ## Examples
 
-Basic
+Will be available soon
 
 1. Direct cypher query
 2. Natural language query
