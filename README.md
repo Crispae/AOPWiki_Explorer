@@ -34,6 +34,15 @@ Open the jupyter notebook to pouplate the graph database with updated infortmati
 
 The url will be like this ```  http://127.0.0.1:8888/lab?token=your_token```  
 
+steps to update the graph database
+1. Open the jupyter lab from the above link
+2. Run `GrapEnricher.ipynb` notebook.
+3. If running first time on your system
+   Run the whole jupyter notebook, it will update the database
+4. If once, already installed
+     Before running the script, confirm, if nodes are already present, it will re-populate the database again
+
+
 **Step 3. Acess the interface**  
 Open following link on your web browser to access the AOPwiki-Explorer  ```http://127.0.0.1:3000/```
 
