@@ -1,4 +1,4 @@
-﻿
+
 <div align="center">
   <img src="frontend/public/logo.png" alt="" width="150">
   <h3>AOPWiki Explorer</h3>
