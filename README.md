@@ -10,24 +10,29 @@ AOPWiki Explorer is a Labeld property graph (LPFG) adaptation of AOPwiki. LPG sc
 
 ## Requirements 🐳
 - Docker  
-- Docker-compose
+- Docker-compose  
 
+Go to following [documentation](https://docs.docker.com/engine/install/), to install docker and docker compose
 
 ## Quick Installation
 
-**Step 1. Build docker container container**   
-In `docker-compose.yaml` file, please update the **OPENAI_API_KEY** to run query translation service.
+The recommended method to use AOPWIKI explorer is through Docker
+
+**Step 1: Build the Docker container**   
+In [`docker-compose.yaml`](https://github.com/Crispae/AOPWiki_Explorer/blob/main/docker-compose.yaml) file, please update the `OPENAI_API_KEY` to run the query translation service.  
+
+Get your OpenAI API key from following [link](https://openai.com/blog/openai-api)
+
 ```shell
 git https://github.com/Crispae/AOPWiki_Explorer.git
 cd AOPWiki_Explorer
 docker compose up
 ```  
-
   
 **Step 2. Populate graph database with AOP information.**  
 Open the jupyter notebook to pouplate the graph database with updated infortmation, The url for jupyter notebook can be found in the console, while docker-compose is running
 
-The url will be like this ```  http://127.0.0.1:8888/lab?token=## your_token```  
+The url will be like this ```  http://127.0.0.1:8888/lab?token=your_token```  
 
 **Step 3. Acess the interface**  
 Open following link on your web browser to access the AOPwiki-Explorer  ```http://127.0.0.1:3000/```
@@ -38,7 +43,7 @@ Open following link on your web browser to access the AOPwiki-Explorer  ```http:
 We welcome contributions from the community. If you encounter any issues, have suggestions, or would like to contribute to the project, please open an issue or submit a pull request on the [GitHub repository](https://github.com/Crispae/AOPWiki_Explorer).
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for more information.
+This project is licensed under the MIT License. See the [LICENSE file](https://github.com/Crispae/AOPWiki_Explorer/LICENSE.txt) for more information.
 
 ## Contacts
 For any inquiries or questions, please contact:
