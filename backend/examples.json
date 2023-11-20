@@ -145,7 +145,13 @@
         "id":"27",
         "question":"AOPs related to unspecific sex",
         "cypher":"MATCH (a:AOP)-[rel1:IS_APPLICABLE]-(b:SEX)\nWHERE toLower(b.name) = 'unspecific'\nRETURN *"
+    },
+    {
+        "id":"28",
+        "question":"Gene having maximum number of connection in the database and the what AOPs are linked to it.",
+        "cypher":"MATCH (a:AOP)-[rel:HAS_GENE]->(g:GENE)\nWITH g AS geneNode, COUNT(*) AS connections // pass the gene node and thier connection\nORDER BY connections DESC\nLIMIT 1\nMATCH (selectedGene:GENE)-[rel2:HAS_GENE]-(aop:AOP)\nWHERE selectedGene = geneNode\nRETURN *"
     }
+   
     
     
 
