@@ -50,7 +50,7 @@ Open following link on your web browser to access the AOPwiki-Explorer  ```http:
 We welcome contributions from the community. If you encounter any issues, have suggestions, or would like to contribute to the project, please open an issue or submit a pull request on the [GitHub repository](https://github.com/Crispae/AOPWiki_Explorer).
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE file](https://github.com/Crispae/AOPWiki_Explorer/LICENSE.txt) for more information.
+This project is licensed under the MIT License. See the [LICENSE file]([https://github.com/Crispae/AOPWiki_Explorer/LICENSE.tx](https://github.com/Crispae/AOPWiki_Explorer/blob/main/LICENSE.txt)t) for more information.
 
 ## Contacts
 For any inquiries or questions, please contact:
