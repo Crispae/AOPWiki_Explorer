@@ -53,6 +53,7 @@ services:
     build:
       context: './backend'
     environment:
+    ## udpate your openai key
       - OPENAI_API_KEY=""
     networks:
       - mynetwork
