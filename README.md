@@ -20,6 +20,7 @@ The recommended method to use AOPWIKI explorer is through Docker container.
 
 ## Step 1: Clone the Repository  
   ```shell
+Open the command prompt and write git clone https://github.com/Crispae/AOPWiki_Explorer.git
 git clone https://github.com/Crispae/AOPWiki_Explorer.git
 cd AOPWiki_Explorer
 ```  
