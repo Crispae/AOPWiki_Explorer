@@ -1,4 +1,4 @@
- [
+[
     {   "id": "1",
         "question": "Find the stressors and Chemicals related to a specific Adverse Outcome Pathway (AOP) 450.",
         "cypher": "MATCH (aop:AOP)-[aop_stressor_relation:HAS_STRESSOR]-(stressor:STRESSOR)-[stressor_chemical_relation:HAS_CHEMICAL]-(chemical:CHEMICAL)\nWHERE aop.id = '450'\nRETURN *"
@@ -149,25 +149,31 @@
     {
         "id":"28",
         "question":"Gene having maximum number of connection in the database and the what AOPs are linked to it.",
-        "cypher":"MATCH (a:AOP)-[rel:HAS_GENE]->(g:GENE)\nWITH g AS geneNode, COUNT(*) AS connections // pass the gene node and thier connection\nORDER BY connections DESC\nLIMIT 1\nMATCH (selectedGene:GENE)-[rel2:HAS_GENE]-(aop:AOP)\nWHERE selectedGene = geneNode\nRETURN *"
+        "cypher":"MATCH (a:AOP)-[rel:HAS_GENE]->(g:GENE)\nWITH g AS geneNode, COUNT(*) AS connections\nORDER BY connections DESC\nLIMIT 1\nMATCH (selectedGene:GENE)-[rel2:HAS_GENE]-(aop:AOP)\nWHERE selectedGene = geneNode\nRETURN *"
+    },
+    {
+        "id":"29",
+        "question":"Gene having maximum number of connection in the database and the what AOPs are linked to it.",
+        "cypher":"MATCH (ke:KEY_EVENT)-[r1:IS_APPLICABLE]-(s:SEX)\nWHERE toLower(s.name) = 'female'\nMATCH (a:AOP)-[r2:HAS_KEY_EVENT]-(ke)\nRETURN *"
+    },
+    {
+        "id":"30",
+        "question":"Key events linked with human taxonomy.",
+        "cypher":"MATCH (ke:KEY_EVENT)-[rel:IS_APPLICABLE]-(t:TAXONOMY)\nWHERE toLower(t.name) = 'human'\nRETURN *"
+    },{
+        "id":"31",
+        "question":"Key events linked with zebra fish taxonomy.",
+        "cypher":"MATCH (ke:KEY_EVENT)-[r:IS_APPLICABLE]-(t:TAXONOMY)\nWHERE toLower(t.name) =~ '.*zebra fish.*'\nRETURN *"
+    },{
+        "id":"32",
+        "question":"Key events linked with zebra fish taxonomy and with their AOPs",
+        "cypher":"MATCH (ke:KEY_EVENT)-[r1:IS_APPLICABLE]-(t:TAXONOMY)\nWHERE toLower(t.name) =~ '.*zebra fish.*'\nMATCH (aop:AOP)-[r2:HAS_KEY_EVENT]-(ke)\nRETURN *"
+    },
+    {
+        "id":"33",
+        "question":"key events associated with molecular organizational level and lined with human taxonomy.",
+        "cypher":"MATCH (ke:KEY_EVENT)-[rel:OCCURS_AT]-(ol:ORGANIZATION_LEVEL)\nWHERE toLower(ol.name) = 'molecular'\nMATCH (ke)-[rel2:IS_APPLICABLE]-(t:TAXONOMY)\nWHERE toLower(t.name) ='human'\nRETURN *"
     }
-   
     
-    
-
-   
-
-
-
- 
-
-   
-
-
-
-
-
-
-
 
 ]
