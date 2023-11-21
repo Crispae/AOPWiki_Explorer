@@ -24,7 +24,6 @@ cd AOPWiki_Explorer
 ```  
 
 
-  
 **Step 2. Populate graph database with AOP information.**  
 Open the jupyter notebook to pouplate the graph database with updated infortmation, The url for jupyter notebook can be found in the console, while docker-compose is running
 
