@@ -21,8 +21,9 @@ Get your OpenAI API key from following [link](https://openai.com/blog/openai-api
 ```shell
 git https://github.com/Crispae/AOPWiki_Explorer.git
 cd AOPWiki_Explorer
-docker compose up
 ```  
+
+
   
 **Step 2. Populate graph database with AOP information.**  
 Open the jupyter notebook to pouplate the graph database with updated infortmation, The url for jupyter notebook can be found in the console, while docker-compose is running
