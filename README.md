@@ -77,10 +77,25 @@ We welcome contributions from the community. If you encounter any issues, have s
 ## License
 This project is licensed under the MIT License. See the [LICENSE file](https://github.com/Crispae/AOPWiki_Explorer/blob/main/LICENSE.txt) for more information.
 
+## Citation
+```bibtex
+@article {Kumar2023.11.21.568076,
+	author = {Saurav Kumar and Deepika Deepika and Luke T Slater and Vikas Kumar, Sr.},
+	title = {AOPWIKI-EXPLORER: An Interactive Graph-based Query Engine leveraging Large Language Models},
+	elocation-id = {2023.11.21.568076},
+	year = {2023},
+	doi = {10.1101/2023.11.21.568076},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.21.568076},
+	eprint = {https://www.biorxiv.org/content/early/2023/11/21/2023.11.21.568076.full.pdf},
+	journal = {bioRxiv}
+}
+```
+## Funding
+The work done here has been supported by funding from the European Union's Horizon 2020 research and innovation program under grant agreement No. 101057014 (PARC).
+
 ## Contacts
 For any inquiries or questions, please contact:
 
     Saurav Kumar
     Email: saurav.kumar@iispv.cat
-## Funding
-The work done here has been supported by funding from the European Union's Horizon 2020 research and innovation program under grant agreement No. 101057014 (PARC).
