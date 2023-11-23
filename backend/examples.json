@@ -178,7 +178,66 @@
         "id":"34",
         "question":"organizational level linked with key events of AOP 450",
         "cypher":"MATCH (aop:AOP)-[rel:HAS_KEY_EVENT]-(ke:KEY_EVENT)-[re2:OCCURS_AT]-(ol:ORGANIZATION_LEVEL)\nWHERE aop.id='450'\nRETURN *"
+    },
+    {
+        "id":"35",
+        "question":"show all bio object mentioned in AOP database",
+        "cypher":"MATCH (b:BIO_OBJECT) RETURN *"
+    },
+    {
+        "id":"36",
+        "question":"bioobject linked with the key event of AOP 450",
+        "cypher":"MATCH (aop:AOP)-[rel:HAS_KEY_EVENT]-(ke:KEY_EVENT)-[re2:HAS_BIOOBJECT]-(bo:BIO_OBJECT)\nWHERE aop.id='450'\nRETURN "
+    },{
+        "id":"37",
+        "question":"bioobject associated with key event of AOP 150",
+        "cypher":"MATCH (a:AOP {id:'150'})-[r:HAS_KEY_EVENT]-(e:KEY_EVENT)\nMATCH (e)-[r2:HAS_BIOOBJECT]-(b:BIO_OBJECT)\nRETURN *"
+    },{
+        "id":"38",
+        "question":"Bio_object having maximum number of connection",
+        "cypher":"MATCH (n:BIO_OBJECT)-[r]-()\nRETURN n, COUNT(r) AS connections\nORDER BY connections DESC\nLIMIT 1"
+    },
+    {
+        "id":"39",
+        "question":"bioobject which has maximum linkage with key events.",
+        "cypher":"MATCH (bo:BIO_OBJECT)-[:HAS_BIOOBJECT]-(ke:KEY_EVENT)\nWITH bo, COUNT(ke) AS keCount\nORDER BY keCount DESC\nLIMIT 1\nRETURN bo, keCount"
+    },
+    {
+        "id":"40",
+        "question":"show all biobjects and all it's neighbours",
+        "cypher":"MATCH (b:BIO_OBJECT)-[r]-(n)\nRETURN *"
+    },
+    {
+        "id":"41",
+        "question":"provide me all the direct connection with AOP 450",
+        "cypher":"MATCH (a:AOP {id:'450'})-[r]-(b) RETURN *"
+    },
+    {
+        "id":"42",
+        "question":"show me all the key events, which has adverse outcome linkage",
+        "cypher":"MATCH (ke:KEY_EVENT)-[:HAS_ADVERSE_OUTCOME]-(b)\nRETURN ke"
+    },
+    {
+        "id":"43",
+        "question":"show me all the key events, which has adverse outcome linkage, show relation as well",
+        "cypher":"MATCH (ke:KEY_EVENT)-[:HAS_ADVERSE_OUTCOME]-(b)\nRETURN ke"
+    },
+    {
+        "id":"44",
+        "question":"life stages of AOPs linked with 'zebrafish'",
+        "cypher":"MATCH (a:AOP)-[r1:IS_APPLICABLE]-(t:TAXONOMY)\nWHERE toLower(t.name) =~ '.*zebrafish.*'\nMATCH (a)-[r2:IS_APPLICABLE]-(ls:LIFE_STAGE)\nRETURN *"
+    },
+    {
+        "id":"45",
+        "question":"life stage associated with AOPs applicable in 'mouse'.",
+        "cypher":"MATCH (a:AOP)-[rel:IS_APPLICABLE]-(b:TAXONOMY)\nWHERE toLower(b.name) =~ '.*mouse.*'\nMATCH (a)-[rel2:IS_APPLICABLE]-(c:LIFE_STAGE)\nRETURN *"
+    },
+    {
+        "id":"46",
+        "question":"all life stage of AOPs applicable in 'mouse' taxonomy.",
+        "cypher":"MATCH (a:AOP)-[rel:IS_APPLICABLE]-(b:TAXONOMY)\nWHERE toLower(b.name) =~ '.*mouse.*'\nMATCH (a)-[rel2:IS_APPLICABLE]-(c:LIFE_STAGE)\nRETURN *"
     }
+    
     
 
 ]
