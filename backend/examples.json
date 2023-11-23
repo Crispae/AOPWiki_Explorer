@@ -236,6 +236,11 @@
         "id":"46",
         "question":"all life stage of AOPs applicable in 'mouse' taxonomy.",
         "cypher":"MATCH (a:AOP)-[rel:IS_APPLICABLE]-(b:TAXONOMY)\nWHERE toLower(b.name) =~ '.*mouse.*'\nMATCH (a)-[rel2:IS_APPLICABLE]-(c:LIFE_STAGE)\nRETURN *"
+    },
+    {
+        "id":"47",
+        "question":"under witch organizational level, the adverse outcome linked to AOP 150 is occurs.",
+        "cypher":"MATCH (a:AOP {id:'150'})-[r1:HAS_ADVERSE_OUTCOME]-(adverse:KEY_EVENT)\nMATCH (adverse)-[r2:OCCURS_AT]-(ol:ORGANIZATION_LEVEL)\nRETURN *"
     }
     
     
