@@ -241,6 +241,21 @@
         "id":"47",
         "question":"under witch organizational level, the adverse outcome linked to AOP 150 is occurs.",
         "cypher":"MATCH (a:AOP {id:'150'})-[r1:HAS_ADVERSE_OUTCOME]-(adverse:KEY_EVENT)\nMATCH (adverse)-[r2:OCCURS_AT]-(ol:ORGANIZATION_LEVEL)\nRETURN *"
+    },
+    {
+        "id":"48",
+        "question":"Most common adverse outcome.",
+        "cypher":"MATCH (a:AOP)-[r:HAS_ADVERSE_OUTCOME]-(b:KEY_EVENT)\nRETURN b, count(*) as frequency\nORDER BY frequency DESC\nLIMIT 1"
+    },
+    {
+        "id":"49",
+        "question":"Most comman molecular initiating event, show all the AOPs linked to it",
+        "cypher":"MATCH (aop:AOP)-[r:HAS_MOLECULAR_INITIATING_EVENT]-(event:KEY_EVENT)\nWITH event, COUNT(aop) as aopCount\nORDER BY aopCount DESC\nLIMIT 1\nMATCH (aop:AOP)-[r:HAS_MOLECULAR_INITIATING_EVENT]-(event)\nRETURN *"
+    },
+    {
+        "id":"50",
+        "question":"In which taxonomy does key event 'Deposition of Energy' is mainly applicable",
+        "cypher":"MATCH (ke:KEY_EVENT)-[rel:IS_APPLICABLE]-(t:TAXONOMY)\nWHERE toLower(ke.name) = 'deposition of energy'\nRETURN *"
     }
     
     
