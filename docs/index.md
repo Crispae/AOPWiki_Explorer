@@ -15,7 +15,7 @@ The recommended method to use AOPWIKI explorer is through Docker container.
 
 ### Step 1: Clone the Repository
 Open the command prompt and write the following command
-  ```shell
+```shell
 git clone https://github.com/Crispae/AOPWiki_Explorer.git
 cd AOPWiki_Explorer
 ```  
@@ -60,12 +60,52 @@ These steps are essential for maintaining an updated graph database containing t
 
 
 ### Step 4. Acess the interface  
-Open following link on your web browser to access the AOPwiki-Explorer  ```http://127.0.0.1:3000/```
+Open following link on your web browser to access the AOPwiki-Explorer  `http://127.0.0.1:3000/`
 
-## Examples
+## Examples ✨  
 
-Will be available soon
+### Understand schema   
 
-1. Direct cypher query
+Optimal utilization of AOPWiki Explorer involves familiarizing yourself with the network schema, comprehending the connections between nodes and edges, and understanding their respective nomenclature. To access the schema of the AOP network, execute the following command within the **Cypher query** editor:
+```sql
+call db.schema.visualization
+``` 
+<div style="align-content:center">
+    <img src="schema.png" alt="AOP graph schema" width="600" height="400"/>
+</div>
+
+The above schema defines the standard names of **nodes** and their **relationship**, this will helps to formulate natural language transversal query over the graph.
+
+### Mandatory input
+Input in **textual query** area is mandatory, as it will allow to keep track of query in natural language form and also allow to translate the query, when user is not comfartable with **cypher query**. For translation query to active, `OPEN_AI_KEY` environment variabel must be passed while running `docker compose up`.
+
+#### Usage
+##### Direct cypher query
+
+Query which are straight forward, according to shcema of AOP. Some examples such as:  
+
+1. **Key events linked with AOP 450 ?**  
+2. **stressors initiates the AOP 450 ?**  
+
+These query can be asked as atural language query and can be translated to cypher query.  The cypher code of these query are:  
+
+
+**Key events linked with AOP 450 ?**    
+```sql
+MATCH (a:AOP)-[r1:HAS_KEY_EVENT]-(b:KEY_EVENT)  
+WHERE a.id = "450"  
+RETURN *
+```  
+
+**Stressors initiates the AOP 450 ?**   
+```sql
+MATCH (a:AOP)-[r1:HAS_STRESSOR]-(b:STRESSOR)  
+WHERE a.id = "450"  
+RETURN *
+```  
+
+As you can see all, the above query is alinged with above AOP schema and queries ahev direct relation with the nodes.
+
+
 2. Natural language query
 3. Step wise query
