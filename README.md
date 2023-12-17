@@ -8,8 +8,8 @@
 AOPWiki Explorer is a Labeld property graph (LPG) adaptation of AOPwiki. LPG schema is adapted using neo4j providing cypher and natural language based query engine to explore AOPs. Explorer provides intutive network visualization of AOPs and different AOP objects linked to it.AOPwiki Explorer is developed under project [**Partnership for the Assessment of Risks from Chemicals (PARC)**](https://www.eu-parc.eu)  
 
 #### Updates:
-1. **Preprint available at [biorxiv](https://www.biorxiv.org/content/10.1101/2023.11.21.568076v1)**
-2. WebApp is available at http://aopexplorer.insilicohub.org/  
+1. [21/09/2023] **Preprint available at [biorxiv](https://www.biorxiv.org/content/10.1101/2023.11.21.568076v1)**
+2. [18/12/2023] **WebApp is available at https://aopexplorer.insilicohub.org/**  
 
 ## Requirements 🐳
 - Docker  
