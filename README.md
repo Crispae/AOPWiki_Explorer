@@ -10,7 +10,7 @@ AOPWiki Explorer is a Labeld property graph (LPG) adaptation of AOPwiki. LPG sch
 #### Updates:
 1. [21/09/2023] **Preprint available at [biorxiv](https://www.biorxiv.org/content/10.1101/2023.11.21.568076v1)**
 2. [4/09/2023]  **Usage documentation released https://crispae.github.io/AOPWiki_Explorer/**
-3. [18/12/2023] **WebApp is available at https://aopexplorer.insilicohub.org/**  
+3. [18/12/2023] **WebApp is available at http://aopexplorer.insilicohub.org/**  
 
 ## Requirements 🐳
 - Docker  
