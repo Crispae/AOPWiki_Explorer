@@ -1,7 +1,7 @@
 ﻿
 <div align="center">
   <img src="frontend/public/logo.png" alt="" width="150">
-  <h3><a href="https://aopexplorer.insilicohub.org/" >AOPWiki Explorer</a></h3>
+  <h3><a href="http://aopexplorer.insilicohub.org/" >AOPWiki Explorer</a></h3>
 </div>  
 
 
