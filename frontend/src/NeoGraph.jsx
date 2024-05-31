@@ -1,10 +1,14 @@
-import React, { useEffect,useRef } from 'react';
-import {NeoVis,NEOVIS_ADVANCED_CONFIG} from 'neovis.js';
-import {useHistoryContext} from './HistoryContextProvider'
+import { NEOVIS_ADVANCED_CONFIG, NeoVis } from 'neovis.js';
+import React, { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistoryContext } from './HistoryContextProvider';
 
 function NeoGraph({ cypher, isCollapsed }) {
+
+const GRAPHDB_ENDPOINT = process.env.REACT_APP_GRAPHDB_ENDPOINT
+const GRAPHDB_USER = process.env.REACT_APP_GRAPHDB_USER
+const GRAPHDB_PASSWORD = process.env.REACT_APP_GRAPHDB_PASSWORD
     
 //const [showNodeInfo,setShowNodeInfo] = useState(false)
 const {save,setSave,setNodeInfo} = useHistoryContext() // context hook to manage the network rendering stage
@@ -55,9 +59,9 @@ useEffect(()=>{
       const config = {
         containerId: divId,
         neo4j: {
-          serverUrl: "bolt://localhost:7687",
-          serverUser: "neo4j",
-          serverPassword: "1234",
+          serverUrl: GRAPHDB_ENDPOINT,
+          serverUser: GRAPHDB_USER,
+          serverPassword: GRAPHDB_PASSWORD,
         },
 
         visConfig:{

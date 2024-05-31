@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Condensed from './Condensed';
-import NeoGraph from './NeoGraph';
-import Loader from './Loader';
-import NodeInfo from './NodeInfo';
-import {useHistoryContext} from './HistoryContextProvider'
 import Editor from './Editor';
+import { useHistoryContext } from './HistoryContextProvider';
+import Loader from './Loader';
+import NeoGraph from './NeoGraph';
+import NodeInfo from './NodeInfo';
 
 
 function Visual() {
+
+const QUERY_TRANSLATION_ENDPOINT = process.env.REACT_APP_QUERY_TRANSLATION_ENDPOINT
 
 // store the input passed by user
 
@@ -41,7 +43,7 @@ function convertRequest(data_info) {
   
   return new Promise((resolve, reject) => {
     const req = new XMLHttpRequest();
-    let url = "http://127.0.0.1:3336/query";
+    let url = `${QUERY_TRANSLATION_ENDPOINT}query`;
     req.open("POST", url, true);
     req.setRequestHeader("Content-type", "application/json");
     req.setRequestHeader("Access-Control-Allow-Origin", "*");
