@@ -1,8 +1,7 @@
 pandas 
-langchain 
+langchain==0.1.1
 neo4j
 chromadb==0.4.17
 flask 
 flask-cors==4.0.0
 pydantic
-openai
