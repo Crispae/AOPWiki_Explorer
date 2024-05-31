@@ -57,8 +57,8 @@ services:
       - OPENAI_API_KEY=""
 
       ## Neo4j environment variables
-      - NEO4J_URL="bolt://neo4j:7687"
-      - NEO4J_USERNAME="neo4j"
+      - NEO4J_URL=bolt://neo4j:7687
+      - NEO4J_USERNAME=neo4j
       - NEO4J_PASSWORD=1234
     networks:
       - mynetwork
@@ -69,6 +69,8 @@ services:
     links:
       - neo4j
       - frontend
+    restart: on-failure ### Backend depends on neo4j(delay in start)
+    
       
 
 ## Configure network 
