@@ -5,3 +5,4 @@ chromadb==0.4.17
 flask 
 flask-cors==4.0.0
 pydantic
+openai
